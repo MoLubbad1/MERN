@@ -4,7 +4,8 @@ export default function Create() {
  const [form, setForm] = useState({
    topic: "",
    question: "",
-   type: "",
+   type: "", 
+   answer: "",
  });
  const navigate = useNavigate();
   // These methods will update the state properties.
@@ -29,13 +30,13 @@ export default function Create() {
      window.alert(error);
      return;
    });
-    setForm({ topic: "", question: "", type: "" });
+    setForm({ topic: "", question: "", type: "", answer: null });
    navigate("/record");
  }
   // This following section will display the form that takes the input from the user.
  return (
    <div>
-     <h3>Create New Record</h3>
+     <h3 class="red-text text-center">Create New Question</h3>
      <form onSubmit={onSubmit}>
        <div className="form-group">
          <label htmlFor="topic">Topic</label>
