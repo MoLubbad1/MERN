@@ -5,8 +5,9 @@ const Record = (props) => (
    <td>{props.record.topic}</td>
    <td>{props.record.question}</td>
    <td>{props.record.type}</td>
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"></link>
    <td>
-     <Link className="btn btn-link" to={`/answering/${props.record._id}`}>Answer</Link>
+   <button className="btn btn-link"><Link className="btn btn-link" to={`/answering/${props.record._id}`}><i class="fas fa-solid fa-check" title="Answer"></i></Link></button>
    </td>
  </tr>
 );

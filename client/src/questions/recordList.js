@@ -4,17 +4,18 @@ const Record = (props) => (
  <tr>
    <td>{props.record.topic}</td>
    <td>{props.record.question}</td>
-   <td>{props.record.type}</td>
+   <td>{props.record.type}</td> 
+   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous"></link>
    <td>
-     <Link className="btn btn-link" to={`/edit/${props.record._id}`}>Edit</Link> |
-     <button className="btn btn-link"
+     <button className="btn btn-link"><Link className="btn btn-link" to={`/edit/${props.record._id}`}><i class="fas fa-solid fa-pen" title="Edit"></i></Link></button>|
+     <button className="btn btn-link text-danger"
        onClick={() => {
          props.deleteRecord(props.record._id); 
          // eslint-disable-next-line no-restricted-globals
          location.reload();
        }}
      >
-       Delete
+        <i class="fas fa-solid fa-trash" title="Delete"></i>
      </button>
    </td>
  </tr>
@@ -58,7 +59,7 @@ export default function RecordList() {
    });
  }
   // This following section will display the table with the records of individuals.
- return (
+ return ( 
    <div>
      <h3 class="red-text text-center">Record List</h3>
      <table className="table table-striped" style={{ marginTop: 20 }}>
@@ -72,6 +73,6 @@ export default function RecordList() {
        </thead>
        <tbody>{recordList()}</tbody>
      </table>
-   </div>
+   </div> 
  );
 }

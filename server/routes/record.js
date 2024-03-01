@@ -37,16 +37,25 @@ recordRoutes.route("/record/:id").get(async function (req, res) {
   });
   
 // This section will help you get a single record by id
-recordRoutes.route("/answering/:id").get(async function (req, res) {
-  try {
-    const db_connect = await dbo.getDb();
-    let myquery = { _id: new ObjectId(req.params.id)};
-    const result = await db_connect.collection("records").find(myquery, function (err, result) {
-      res.json(result);
-    });
-  } catch (err) {
-    throw err;
-  }
+recordRoutes.route("/answering/:id").post(async function (req, response) {
+  try{
+let db_connect = await dbo.getDb(); 
+//Do I have to add answer to myquery to be able to save all inputs?
+let myquery = { _id: new ObjectId(req.params.id)};
+let newvalues = {
+ $set: { 
+   topic: req.body.topic,
+   question: req.body.question,
+   type: req.body.type,
+   answer: req.body.answer,
+ },
+}; 
+//Is the update one function the one changing all to null?
+let result = await db_connect.collection("records").updateOne(myquery, newvalues);
+response.send(result).status(200);
+}catch(e){
+  throw e;
+}
 });
  
 // This section will help you create a new record.
@@ -56,6 +65,7 @@ recordRoutes.route("/record/add").post(async function (req, response) {
    topic: req.body.topic,
    question: req.body.question,
    type: req.body.type,
+   answer: null,
  };
  
  let result = await db_connect.collection("records").insertOne(myobj);
@@ -71,7 +81,8 @@ recordRoutes.route("/update/:id").post(async function (req, response) {
    $set: {
      topic: req.body.topic,
      question: req.body.question,
-     type: req.body.type,
+     type: req.body.type, 
+     answer: null,
    },
  };
  let result = await db_connect.collection("records").updateOne(myquery, newvalues);
