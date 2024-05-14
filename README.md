@@ -1,0 +1,1 @@
+This app was my Independent study project during my senior year of highschool, where I tried to learn how to create an app. This app allows users to create and conduct surveys, gather responses, and edit or delete their questions.
